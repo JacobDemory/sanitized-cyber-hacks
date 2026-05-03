@@ -1,0 +1,41 @@
+# OS files
+.DS_Store
+Thumbs.db
+__MACOSX/
+
+# Editor files
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# C / compiled artifacts
+*.o
+*.out
+*.class
+*.exe
+*.dll
+*.so
+*.dylib
+target
+exploit
+bin/
+
+# Environment / secrets
+.env
+*.card
+*.bank
+*.atm
+secret/
+token
+
+# Logs and generated files
+*.log
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
