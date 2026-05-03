@@ -1,0 +1,31 @@
+DOCKER COMMANDS FROM PROJ 1
+
+Running the code in a container is a bit more complex than running it
+locally. To help with this, we have provided the following scripts:
+
+ * `run_target.sh` starts a container with `target` running
+ * `run_exploit.sh` runs `exploit` in the same container
+ * `run_baseline.sh` starts an essentially idle container
+
+You can also start an interactive container, so that you can run the
+programs multiple times without restarts, as well as using `gdb`. (You
+can use `run_baseline.sh` to accomplish this, too.) To do this, run:
+
+    docker run --name stack -ti --rm -v "$(pwd):/opt" baseline
+
+Once you have a container running, you can start interactive shells in
+it (from other host terminals) with:
+
+    docker exec -ti stack bash
+
+This runs the program `bash` (that is, the shell) on the container
+named `stack`, and runs it interactively.
+
+Because the container captures the output from your programs, if you've used
+the `run_target.sh` script you can view stdout and stderr with:
+
+    docker logs stack
+
+You will also need to clean up the container when you are done:
+
+    docker rm stack

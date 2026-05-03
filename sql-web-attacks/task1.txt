@@ -1,0 +1,14 @@
+login="bob') -- "
+password=""
+
+Basically to make the login for bob work with any password (or even no password as I used in my input above),
+I injected a single quote, end parenthesis, and a SQL comment into the username field.
+The login php function builds:
+
+$sel1 = mysql_query("SELECT ID,name,locale,lastlogin,gender FROM user 
+WHERE (name = 'bob') -- ' OR email = 'bob') -- ') AND pass = '$pass'");
+
+The single quote and parenthesis close the WHERE portion making it `(name = 'bob')`
+and then the "--" (comment indicator in SQL) portion starts a SQL comment, therefore
+ignoring everything that appears after it on that line. So it Bob's record is the only
+thing that is checked and I am then able to login as Bob without using his password.

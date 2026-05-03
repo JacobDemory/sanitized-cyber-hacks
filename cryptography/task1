@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+import sys
+import bank
+
+def solve():
+    filename = sys.argv[1]
+    blocks = bank.read_file_as_blocks(filename)
+    messages = bank.parse_session(blocks)
+
+    for m in messages:
+        print(m['type'])
+
+if __name__ == "__main__":
+    solve()

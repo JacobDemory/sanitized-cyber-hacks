@@ -1,0 +1,25 @@
+"newpassword"
+alice
+"name"="bob"
+"email"="a@a.com"
+"company"="', pass='f2c57870308dc87f432e5912d4de6f8e322721ba' WHERE ID=3 -- "
+
+I logged in as alice and opened the Edit Profile form under the account. From the PHP code,
+you can see that all fields are escaped properaly except "company" which has been commented out
+in order to allow for the injection. The value of company is inserted directly into the UPDATE statement
+since it is not escaped like the other variables.
+
+I set the company field in the update profile page to the above text, along with changing the name field
+to bob in order to change his passowrd specifically and the email field as it was required.
+Clicking save then builds the SQL statement as follows:
+
+	$upd = mysql_query("UPDATE user SET name='$name', email='$email', tel1='$tel1', tel2='$tel2', 
+	company='x', pass='f2c57870308dc87f432e5912d4de6f8e322721ba' WHERE ID=3 -- ',zip='$zip',
+	gender='$gender',url='$url',adress='$address1',adress2='$address2',state='$state',
+	country='$country',tags='$tags',locale='$locale',rate='$rate' WHERE ID = $id");
+
+The above code closes the company string with the single quote, adds a new assignment to set the
+pass column of users to the SHA1 equivalent of "newpassword", and changes the WHERE portion
+to target Bob, whose ID is 3. The -- characters at the end are to comment out the rest of
+the original SQL. On submission of this form, Bob's password becomes "newpassword" as desired,
+and I can then log in as bob using that changed password.
