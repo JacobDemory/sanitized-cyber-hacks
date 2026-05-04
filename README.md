@@ -45,7 +45,7 @@ Each folder contains:
 All materials are **sanitized for public release**:
 
 - No sensitive infrastructure or private systems are included  
-- No active exploit scripts are intended for misuse  
+- No materials are intended for real-world misuse
 - No private IPs, credentials, or attack endpoints are exposed  
 
 This repository is for **educational and portfolio purposes only**.
